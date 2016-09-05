@@ -1,0 +1,12 @@
+---
+# file: tasks/repository.yml
+
+- name: Configure DEB sources for Burp
+  template:
+    src: sources_burp.list.j2
+    dest: /etc/apt/sources.list.d/sources_burp.list
+
+- name: Install GPG key
+  apt_key:
+    url: "http://ziirish.info/repos/{{ ansible_distribution | lower }}.gpg"
+    state: present

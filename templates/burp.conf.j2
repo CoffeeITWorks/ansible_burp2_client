@@ -1,0 +1,19 @@
+mode = client
+server = {{ burp_client_server }}
+
+port = {{ burp_client_port }}
+status_port = {{ burp_client_port }}
+pidfile = {{ burp_client_pidfile }}
+progress_counter = {{ burp_client_progress_counter }}
+cname = {{ ansible_nodename }}
+password = {{ burp_client_password }}
+protocol = {{ burp_client_protocol }}
+syslog = {{ burp_client_syslog }}
+stdout = 1
+ca_burp_ca = {{ burp_client_ca_burp_ca }}
+ca_csr_dir = {{ burp_client_ca_csr_dir }}
+ssl_cert_ca = {{ burp_client_ssl_cert_ca }}
+ssl_cert = {{ burp_client_ssl_cert }}
+ssl_key = {{ burp_client_ssl_key }}
+ssl_key_password = {{ burp_client_ssl_key_password }}
+ssl_peer_cn = {{ burp_client_ssl_peer_cn }}

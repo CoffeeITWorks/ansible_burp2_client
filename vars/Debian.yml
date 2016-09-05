@@ -1,0 +1,23 @@
+---
+# file: vars/Debian.yml
+
+build_dependencies:
+  - make
+  - pkg-config
+  - check
+  - g++
+  - librsync-dev
+  - libz-dev
+  - libssl-dev
+  - uthash-dev
+  - libyajl-dev
+  - autoconf
+  - automake
+  - libtool
+  - dh-autoreconf
+
+# burp2_client_packages:
+#  - burp-client
+
+# burp2_client_apt_sources:
+#  - "deb http://ziirish.info/repos/debian/{{ ansible_distribution_release }} zi-latest main"

@@ -1,0 +1,35 @@
+---
+# file: tasks/main.yml
+
+- include: multi_os.yml
+
+# - include: repository.yml
+
+- include: build-burp.yml
+
+- name: set burp client configuration
+  template:
+    src: burp.conf.j2
+    dest: /etc/burp/burp.conf
+
+- name: set burp client restore configuration
+  template:
+    src: burp-restore.conf.j2
+    dest: /etc/burp/burp-restore.conf
+
+- name: create burp folders
+  file:
+    path: "{{ burp_client_logs }}"
+    state: directory
+
+- name: configure burp logrotate
+  template:
+    src: burp_logrotate.j2
+    dest: /etc/logrotate.d/burp
+
+- cron:
+    name: burp client schedule
+    job: "[ -x /usr/sbin/burp ] && /usr/sbin/burp -a t >> {{ burp_client_logs }}/burp_client.log 2>&1"
+    user: root
+    cron_file: burp_client
+    minute: "7,27,47"

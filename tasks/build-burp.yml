@@ -1,5 +1,11 @@
 ---
 
+- name: ensure chache for apt is updated
+  apt:
+    update_cache: yes
+    cache_valid_time: 43200
+  when: ansible_os_family == 'Debian'
+
 - name: install build dependencies
   package:
     name: "{{ build_dependencies | join(',') }}"
@@ -36,6 +42,13 @@
 - name: Make install
   shell: cd {{ download_dir }}/{{ burpsrc }} && make install creates=/usr/sbin/burp
 
+# Ensure to not create /etc/bur/CA manually because it will break auto generated certificate
+- name: create etc directories
+  file: path={{ item }} recurse=yes state=directory
+  with_items:
+    - '/etc/burp/autoupgrade'
+    - '{{ burp_client_ca_csr_dir }}'
+  
 # Only required for server:
 # - name: copy etc file
 #  template:

@@ -24,6 +24,7 @@ burp_client_logs: "/var/log/burp"
 
 ## Build vars:
 
+burp_force_reinstall: false
 burpver: "2.0.54"
 burpsrcext: 'tar.gz'
 burpsrc: "burp-{{ burpver }}"

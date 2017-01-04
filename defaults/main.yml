@@ -25,7 +25,8 @@ burp_client_logs: "/var/log/burp"
 ## Build vars:
 
 burpver: "2.0.54"
+burpsrcext: 'tar.gz'
 burpsrc: "burp-{{ burpver }}"
-burpurl: "https://github.com/grke/burp/archive/{{ burpver }}.tar.gz"
+burpurl: "https://github.com/grke/burp/archive/{{ burpver }}.{{ burpsrcext }}"
 # Directory that will be used as the location for the downloads§
 download_dir: "{{ ansible_env.HOME }}/burp"

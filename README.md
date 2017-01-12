@@ -1,60 +1,78 @@
-Procedimiento
-=============
 
-Procedimiento para agregar nuevos servidores al rol y procedimiento de uso del rol. 
 
-Cambios en ansible
-------------------
+Getting Started
+================
 
-Cambios en inventario
----------------------
+Check the documentation added in: 
 
-Cambios en monitoreo
---------------------
+https://github.com/CoffeeITWorks/ansible-generic-help#getting-started
 
-Cambios en runbook
-------------------
-
-Cambios en otras planillas
---------------------------
 
 Role Name
 =========
 
-A brief description of the role goes here.
+ansible burp2_client deploy and maintenance role.
+
+This roles builds burp version specified on defaults/main.yml. 
+Also configures it to get it working and maintained in a centralized way.
+
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Have burp2_server configured, recommended use ansible_burp2_server role from CoffeeITWorks: https://github.com/CoffeeITWorks
+
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+### Add to your host/group_vars:
+ 
+Create host_vars or group_vars dirs. 
+
+Inside it you can add a file with the name of the group or the host where you want to add specific options of this role.
+
+*Required vars*:
+
+    burp_client_server: IP.ADD.RE.SS
+
+*Options vars:* 
+
+    burp_client_port: "{{ burp_server_port | default(4971) }}"
+    burp_client_status_port: "{{ burp_server_status_port | default(4972) }}"
+    burp_client_port_restore: "{{ burp_restore_port | default(4973) }}"
+    burp_client_status_port_restore: "{{ burp_restore_status_port | default(4974) }}"
+
+    burp_client_pidfile: "/var/run/burp.pid"
+    burp_client_password: "password"
+    burp_client_protocol: "1"
+
+
+Check also all vars in `defaults/main.yml` you can override any default using your host/group_vars
+There are vars to choose burp version and more.
+
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
-
-Example Playbook
-----------------
-
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
 
 License
 -------
 
-BSD
+MIT
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+This role was main developed by Diego Daguerre with collaboration of Pablo Estigarribia (pablodav at gmail)
 
+Burp backup and restore
+=======================
+
+Main page: http://burp.grke.org/
+
+Burpui
+======
+
+Main page: https://git.ziirish.me/ziirish/burp-ui
 

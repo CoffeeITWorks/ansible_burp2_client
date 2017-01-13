@@ -67,10 +67,12 @@
 - name: Make install
   shell: cd {{ download_dir }}/{{ burpsrc }} && make install creates=/usr/sbin/burp
 
+# Run this task always
 - name: read burp installed version
   shell: burp -v
   changed_when: false
   register: cmd_burp_version
+  check_mode: no
 
 - name: failed when burp version is different than the one that must be installed
   fail: msg="burp version is different than the one that must be installed"

@@ -16,6 +16,7 @@
   template:
     src: burp-restore.conf.j2
     dest: /etc/burp/burp-restore.conf
+  when: not burp_server_port_per_operation_bool 
 
 - name: create burp folders
   file:

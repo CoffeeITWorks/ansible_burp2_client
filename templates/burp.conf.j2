@@ -17,3 +17,12 @@ ssl_cert = {{ burp_client_ssl_cert }}
 ssl_key = {{ burp_client_ssl_key }}
 ssl_key_password = {{ burp_client_ssl_key_password }}
 ssl_peer_cn = {{ burp_client_ssl_peer_cn }}
+
+{% if burp_server_port_per_operation_bool %}
+# These ports are based on: https://github.com/CoffeeITWorks/ansible_burp2_server/issues/11
+# Compatible since burp 2.1.10
+{% for l in burp_client_ports_per_operation %}
+{{ l }}
+{% endfor %}
+{% endif %}
+

@@ -49,9 +49,34 @@ Inside it you can add a file with the name of the group or the host where you wa
     burp_client_protocol: "1"
 
 
+#### Port per operation
+
+--- 
+
+Since version 2.1.10
+   + Add the ability for the client to connect to different server ports
+
+ according to whether it is doing backup/restore/verify/list/delete.
+ These ports are based on: https://github.com/CoffeeITWorks/ansible_burp2_server/issues/11
+ Compatible since burp 2.1.10
+
+```yaml
+burp_server_port_per_operation_bool: true
+# This option will disable the creation of /etc/burp/burp-restore.conf too
+
+# Default optional vars to change:
+# These are not needed to be changed, but showing here the
+# defaults that we have in defaults/main.yml
+burp_server_port_operation_restore: 4975
+burp_server_port_operation_verify: 4976
+burp_server_port_operation_list: 4977
+burp_server_port_operation_delete: 4978
+```
+
 Check also all vars in `defaults/main.yml` you can override any default using your host/group_vars
 There are vars to choose burp version and more.
 
+These options **will setup** `/etc/burp/burp.conf`
 
 Dependencies
 ------------

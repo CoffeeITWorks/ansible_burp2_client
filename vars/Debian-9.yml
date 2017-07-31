@@ -1,5 +1,4 @@
----
-# file: vars/Ubuntu.yml
+# file: vars/Debian.yml
 
 build_dependencies:
   - make
@@ -20,4 +19,4 @@ build_dependencies:
 #  - burp-client
 
 # burp2_client_apt_sources:
-#  - "deb http://ziirish.info/repos/ubuntu/{{ ansible_distribution_release }} zi-latest main"
+#  - "deb http://ziirish.info/repos/debian/{{ ansible_distribution_release }} zi-latest main"

@@ -1,12 +1,13 @@
 ---
 # file: tasks/multi_os.yml
-# Best practices for OS Specific variables
-# https://monkeyswithbuttons.wordpress.com/2014/04/03/multi-os-support-in-ansible/
-# http://docs.ansible.com/ansible/playbooks_best_practices.html
+
+- debug: 
+    msg: "distribution-version: {{ ansible_distribution }}-{{ ansible_distribution_major_version }}"
+
 - name: Gather OS Specific Variables
   include_vars: "{{ item }}"
   with_first_found:
-    - "../vars/{{ ansible_distribution }}-{{ ansible_distribution_version }}.yml"
+    - "../vars/{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
     - "../vars/{{ ansible_distribution }}.yml"
     - "../vars/{{ ansible_os_family }}.yml"
     - "../vars/defaults.yml"

@@ -25,4 +25,15 @@ ssl_peer_cn = {{ burp_client_ssl_peer_cn }}
 {{ l }}
 {% endfor %}
 {% endif %}
+{% if burp_client_includes is defined %}
 
+{% for include in burp_client_includes %}
+include={{ include }}
+{% endfor %}
+{% endif %}
+{% if burp_client_excludes is defined %}
+
+{% for exclude in burp_client_excludes %}
+exclude={{ exclude }}
+{% endfor %}
+{% endif %}

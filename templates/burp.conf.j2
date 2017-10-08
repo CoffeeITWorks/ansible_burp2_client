@@ -24,16 +24,17 @@ ssl_peer_cn = {{ burp_client_ssl_peer_cn }}
 {% for l in burp_client_ports_per_operation %}
 {{ l }}
 {% endfor %}
-{% endif %}
-{% if burp_client_includes is defined %}
 
+{% endif %}
+server_can_override_includes = {{ burp_client_server_can_override_includes }}
+{% if burp_client_includes is defined %}
 {% for include in burp_client_includes %}
-include={{ include }}
+include = {{ include }}
 {% endfor %}
 {% endif %}
 {% if burp_client_excludes is defined %}
 
 {% for exclude in burp_client_excludes %}
-exclude={{ exclude }}
+exclude = {{ exclude }}
 {% endfor %}
 {% endif %}

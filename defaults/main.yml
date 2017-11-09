@@ -28,7 +28,7 @@ burp_force_reinstall: false
 burp_version: "2.0.54"
 burpsrcext: 'tar.gz'
 burpsrc: "burp-{{ burp_version }}"
-burpurl: "https://github.com/grke/burp/archive/{{ burpver }}.{{ burpsrcext }}"
+burpurl: "https://github.com/grke/burp/archive/{{ burp_version }}.{{ burpsrcext }}"
 # Directory that will be used as the location for the downloads§
 download_dir: "{{ ansible_env.HOME }}/burp"
 

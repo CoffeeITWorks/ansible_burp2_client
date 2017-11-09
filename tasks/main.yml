@@ -33,6 +33,14 @@
     src: burp_logrotate.j2
     dest: /etc/logrotate.d/burp
 
+- name: ensure /etc/cron.d exists
+  file: 
+    path: /etc/cron.d
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
 - cron:
     name: burp client schedule
     job: "[ -x /usr/sbin/burp ] && /usr/sbin/burp -a t >> {{ burp_client_logs }}/burp_client.log 2>&1"

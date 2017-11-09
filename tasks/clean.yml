@@ -1,0 +1,11 @@
+---
+
+- name: uninstall old burp package
+  package:
+    name: burp
+    state: absent
+
+- name: uninstall old burp package
+  package:
+    name: burp-client
+    state: absent

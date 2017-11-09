@@ -1,11 +1,16 @@
 ---
 # file: tasks/main.yml
 
-- include: multi_os.yml
+- include_tasks: multi_os.yml
+
+- include_tasks: redhat.yml
+  when: ansible_os_family == "RedHat"
 
 # - include: repository.yml
 
-- include: build-burp.yml
+- include_tasks: clean.yml
+
+- include_tasks: build-burp.yml
 
 - name: set burp client configuration
   template:

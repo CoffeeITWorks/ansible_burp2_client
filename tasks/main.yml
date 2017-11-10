@@ -1,11 +1,16 @@
 ---
 # file: tasks/main.yml
 
-- include: multi_os.yml
+- include_tasks: multi_os.yml
+
+- include_tasks: redhat.yml
+  when: ansible_os_family == "RedHat"
 
 # - include: repository.yml
 
-- include: build-burp.yml
+- include_tasks: clean.yml
+
+- include_tasks: build-burp.yml
 
 - name: set burp client configuration
   template:
@@ -28,9 +33,24 @@
     src: burp_logrotate.j2
     dest: /etc/logrotate.d/burp
 
-- cron:
+- name: ensure /etc/cron.d exists
+  file: 
+    path: /etc/cron.d
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: schedule cron.d jobs
+  cron:
     name: burp client schedule
     job: "[ -x /usr/sbin/burp ] && /usr/sbin/burp -a t >> {{ burp_client_logs }}/burp_client.log 2>&1"
     user: root
     cron_file: burp_client
     minute: "7,27,47"
+
+- name: Enable crond service
+  service:
+    name: "{{ cron_service }}"
+    state: started
+    enabled: yes

@@ -67,22 +67,28 @@
 - name: Make install
   shell: cd {{ download_dir }}/{{ burpsrc }} && make install creates=/usr/sbin/burp
 
-# Run this task always
-- name: read burp installed version
-  shell: burp -v
-  changed_when: false
-  register: cmd_burp_version
-  check_mode: no
+- block:
+  # Verify burp version if the burp_version is not master
 
-- name: failed when burp version is different than the one that must be installed
-  fail: msg="burp version is different than the one that must be installed"
-  when: cmd_burp_version.stdout != "burp-{{ burpver }}"
+  # Run this task always to register the burp version
+  - name: read burp installed version
+    shell: burp -v
+    changed_when: false
+    register: cmd_burp_version
+    tags:
+      - skip_ansible_lint
+    check_mode: no
+
+  - name: failed when burp version is different than the one that must be installed
+    fail: msg="burp version is different than the one that must be installed"
+    when: cmd_burp_version.stdout != "burp-{{ burp_version }}"
+
+  when: burp_version != "master"
 
 # Ensure to not create /etc/bur/CA manually because it will break auto generated certificate
 - name: create etc directories
   file: path={{ item }} recurse=yes state=directory
   with_items:
-    - '/etc/burp/autoupgrade'
     - '{{ burp_client_ca_csr_dir }}'
   
 # Only required for server:

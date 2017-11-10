@@ -41,9 +41,16 @@
     group: root
     mode: 0755
 
-- cron:
+- name: schedule cron.d jobs
+  cron:
     name: burp client schedule
     job: "[ -x /usr/sbin/burp ] && /usr/sbin/burp -a t >> {{ burp_client_logs }}/burp_client.log 2>&1"
     user: root
     cron_file: burp_client
     minute: "7,27,47"
+
+- name: Enable crond service
+  service:
+    name: "{{ cron_service }}"
+    state: started
+    enabled: yes

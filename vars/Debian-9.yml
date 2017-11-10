@@ -23,6 +23,9 @@ build_dependencies:
   - libssl1.1   # from package dependencies (debian9)
   - libtinfo5   # from package dependencies
   - zlib1g      # from package dependencies
+  - cron        # required to schedule jobs
+
+cron_service: cron
 
 # burp2_client_packages:
 #  - burp-client

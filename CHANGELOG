@@ -2,6 +2,8 @@ v1.3
 ====
 
 * Added centos7 support and Debian 8 / 9 - Ubuntu 16.04
+* Added notes when upgrading OS
+* Added travis test with molecule for Ubuntu 14.04, latest, centos7, debian 8, 9.
 
 v1.2
 ====

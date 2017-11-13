@@ -48,3 +48,5 @@ burp_client_ports_per_operation:
   - 'port_verify = {{ burp_server_port_operation_verify }}'
   - 'port_list = {{ burp_server_port_operation_list }}'
   - 'port_delete = {{ burp_server_port_operation_delete }}'
+
+burp_client_server_can_override_includes: '1'

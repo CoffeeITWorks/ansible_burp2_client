@@ -11,7 +11,16 @@
   package:
     name: "{{ build_dependencies | join(',') }}"
     state: present
+  when: ( ansible_os_family != 'FreeBSD' and not burp_freebsd_use_portinstall )
 
+- name: install build dependencies
+  portinstall:
+    name: "{{ item }}"
+    state: present
+    use_packages: False
+  with_items: "{{ build_dependencies }}"
+  when: ansible_os_family == 'FreeBSD'
+    
 - name: Uninstall old burp
   package:
     name: "{{ item }}"
@@ -51,21 +60,21 @@
   shell: cd {{ download_dir }}/{{ burpsrc }} && autoreconf -vif creates={{ download_dir }}/{{ burpsrc }}/configure
 
 - name: ./configure
-  shell: cd {{ download_dir }}/{{ burpsrc }} && ./configure --prefix=/usr --sysconfdir=/etc/burp --localstatedir=/var creates={{ download_dir }}/{{ burpsrc }}/Makefile
+  shell: cd {{ download_dir }}/{{ burpsrc }} && ./configure --prefix={{ usr_dir }} --sysconfdir={{ etc_dir }}/burp --localstatedir=/var creates={{ download_dir }}/{{ burpsrc }}/Makefile
 
 - name: Make
   shell: cd {{ download_dir }}/{{ burpsrc }} && make creates={{ download_dir }}/{{ burpsrc }}/burp
 
 - name: check if burp is installed
-  stat: path=/usr/sbin/burp
+  stat: path="{{ usr_dir }}/sbin/burp"
   register: stb
 
 - name: Uninstall burp
-  shell: cd {{ download_dir }}/{{ burpsrc }} && make uninstall removes=/usr/sbin/burp
+  shell: cd {{ download_dir }}/{{ burpsrc }} && make uninstall removes={{ usr_dir }}/sbin/burp
   when: stb.stat.exists and ( unpack_src_tar.changed or unpack_src_zip.changed )
 
 - name: Make install
-  shell: cd {{ download_dir }}/{{ burpsrc }} && make install creates=/usr/sbin/burp
+  shell: cd {{ download_dir }}/{{ burpsrc }} && make install creates={{ usr_dir }}/sbin/burp
 
 - block:
   # Verify burp version if the burp_version is not master

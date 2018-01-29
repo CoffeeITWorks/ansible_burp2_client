@@ -9,3 +9,5 @@
   package:
     name: burp-client
     state: absent
+  # there is only burp for client and server on FreeBSD
+  when: ansible_os_family != "FreeBSD"

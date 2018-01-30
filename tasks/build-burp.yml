@@ -94,7 +94,7 @@
 
   when: burp_version != "master"
 
-# Ensure to not create /etc/bur/CA manually because it will break auto generated certificate
+# Ensure to not create /etc/burp/CA manually because it will break auto generated certificate
 - name: create etc directories
   file: path={{ item }} recurse=yes state=directory
   with_items:

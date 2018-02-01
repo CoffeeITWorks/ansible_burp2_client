@@ -25,7 +25,7 @@ burp_client_logs: "/var/log/burp"
 ## Build vars:
 
 burp_force_reinstall: false
-burp_version: "2.0.54"
+burp_version: "2.1.28"
 burpsrcext: 'tar.gz'
 burpsrc: "burp-{{ burp_version }}"
 burpurl: "https://github.com/grke/burp/archive/{{ burp_version }}.{{ burpsrcext }}"

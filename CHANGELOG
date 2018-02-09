@@ -1,3 +1,9 @@
+v1.4
+====
+
+* Upgrade to burp 2.1.28 as default
+* Migrate molecule tests to molecule v2
+
 v1.3.1
 ======
 

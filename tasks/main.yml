@@ -31,6 +31,11 @@
     path: "{{ burp_client_logs }}"
     state: directory
 
+- name: create logrotate.d folder
+  file:
+    path: "{{ etc_dir }}/logrotate.d"
+    state: directory
+
 - name: configure burp logrotate
   template:
     src: burp_logrotate.j2

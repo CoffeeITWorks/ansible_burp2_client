@@ -1,0 +1,8 @@
+---
+
+- name: install build dependencies
+  portinstall:
+    name: "logrotate"
+    state: present
+    use_packages: False
+  

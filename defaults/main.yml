@@ -1,6 +1,11 @@
 ---
 # file: defaults/main.yml
 
+# Linux standard path etc  FreeBSD uses a different paths and root group
+etc_dir: "/etc"
+usr_dir: "/usr"
+root_group: "root"
+
 burp_client_progress_counter: "1"
 burp_client_server: "192.168.0.1"
 
@@ -13,11 +18,11 @@ burp_client_pidfile: "/var/run/burp.pid"
 burp_client_password: "password"
 burp_client_protocol: "1"
 burp_client_syslog: "0"
-burp_client_ca_burp_ca: "/usr/sbin/burp_ca"
-burp_client_ca_csr_dir: "/etc/burp/CA-client"
-burp_client_ssl_cert_ca: "/etc/burp/ssl_cert_ca.pem"
-burp_client_ssl_cert: "/etc/burp/ssl_cert-client.pem"
-burp_client_ssl_key: "/etc/burp/ssl_cert-client.key"
+burp_client_ca_burp_ca: "{{ etc_dir }}/sbin/burp_ca"
+burp_client_ca_csr_dir: "{{ etc_dir }}/burp/CA-client"
+burp_client_ssl_cert_ca: "{{ etc_dir }}/burp/ssl_cert_ca.pem"
+burp_client_ssl_cert: "{{ etc_dir }}/burp/ssl_cert-client.pem"
+burp_client_ssl_key: "{{ etc_dir }}/burp/ssl_cert-client.key"
 burp_client_ssl_key_password: "{{ burp_server_ssl_key_password | default('password') }}"
 burp_client_ssl_peer_cn: "burpserver"
 burp_client_logs: "/var/log/burp"
@@ -50,3 +55,6 @@ burp_client_ports_per_operation:
   - 'port_delete = {{ burp_server_port_operation_delete }}'
 
 burp_client_server_can_override_includes: '1'
+
+# use ports instead of package to install sw on freebsd
+burp_freebsd_use_portinstall: True

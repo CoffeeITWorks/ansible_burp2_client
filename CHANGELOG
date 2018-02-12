@@ -3,6 +3,7 @@ v1.4
 
 * Upgrade to burp 2.1.28 as default
 * Migrate molecule tests to molecule v2
+* Added FreeBSD 11 support included molecule v2 tests with vagrant for FreeBSD, thanks to @planet-winter (Daniel Winter)
 
 v1.3.1
 ======

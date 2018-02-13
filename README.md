@@ -108,3 +108,23 @@ Burpui
 ======
 
 Main page: https://git.ziirish.me/ziirish/burp-ui
+
+Testing with molecule v2 (for devs)
+===================================
+
+For defaults linux tests,
+You can check the steps in [.travis.yml](.travis.yml)
+
+And use standard tests too:
+
+    sudo molecule test
+
+For FreeBSD 11 you can also use [molecule/freebsd/INSTALL.rst].
+Then use scenario *freebsd*:
+
+```shell
+molecule create -s freebsd
+molecule converge -s freebsd
+molecule idempotence -s freebsd
+molecule destroy -s freebsd
+```

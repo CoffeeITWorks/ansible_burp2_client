@@ -6,6 +6,9 @@
 - include_tasks: redhat.yml
   when: ansible_os_family == "RedHat"
 
+- include_tasks: freebsd.yml
+  when: ansible_os_family == "FreeBSD"
+  
 # - include: repository.yml
 
 - include_tasks: clean.yml
@@ -15,12 +18,12 @@
 - name: set burp client configuration
   template:
     src: burp.conf.j2
-    dest: /etc/burp/burp.conf
+    dest: "{{ etc_dir }}/burp/burp.conf"
 
 - name: set burp client restore configuration
   template:
     src: burp-restore.conf.j2
-    dest: /etc/burp/burp-restore.conf
+    dest: "{{ etc_dir }}/burp/burp-restore.conf"
   when: not burp_server_port_per_operation_bool 
 
 - name: create burp folders
@@ -28,23 +31,28 @@
     path: "{{ burp_client_logs }}"
     state: directory
 
+- name: create logrotate.d folder
+  file:
+    path: "{{ etc_dir }}/logrotate.d"
+    state: directory
+
 - name: configure burp logrotate
   template:
     src: burp_logrotate.j2
-    dest: /etc/logrotate.d/burp
+    dest: "{{ etc_dir }}/logrotate.d/burp"
 
 - name: ensure /etc/cron.d exists
   file: 
-    path: /etc/cron.d
+    path:  /etc/cron.d
     state: directory
     owner: root
-    group: root
+    group: "{{ root_group }}"
     mode: 0755
 
 - name: schedule cron.d jobs
   cron:
     name: burp client schedule
-    job: "[ -x /usr/sbin/burp ] && /usr/sbin/burp -a t >> {{ burp_client_logs }}/burp_client.log 2>&1"
+    job: "[ -x {{ usr_dir }}/sbin/burp ] && {{ usr_dir }}/sbin/burp -a t >> {{ burp_client_logs }}/burp_client.log 2>&1"
     user: root
     cron_file: burp_client
     minute: "7,27,47"

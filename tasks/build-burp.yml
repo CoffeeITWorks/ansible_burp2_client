@@ -7,19 +7,19 @@
   changed_when: false
   when: ansible_os_family == 'Debian'
 
-- name: install build dependencies
+- name: build-burp | install build dependencies Linux
   package:
     name: "{{ build_dependencies | join(',') }}"
     state: present
-  when: ( ansible_os_family != 'FreeBSD' and not burp_freebsd_use_portinstall )
+  when: ansible_os_family != 'FreeBSD'
 
-- name: install build dependencies
+- name: build-burp | install build dependencies FreeBSD
   portinstall:
     name: "{{ item }}"
     state: present
     use_packages: False
   with_items: "{{ build_dependencies }}"
-  when: ansible_os_family == 'FreeBSD'
+  when: ansible_os_family == 'FreeBSD' and burp_freebsd_use_portinstall
     
 - name: Uninstall old burp
   package:

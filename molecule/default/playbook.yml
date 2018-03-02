@@ -1,0 +1,8 @@
+---
+- name: Converge
+  hosts: all
+  vars:
+    burp_module_test_client: false
+    burp_module_agent: false
+  roles:
+    - role: ansible_burp2_client

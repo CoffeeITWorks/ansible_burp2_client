@@ -18,7 +18,7 @@
 - name: ensure client dir exists
   file:
     path: "{{ burp_client_dir }}"
-    state: present
+    state: directory
     owner: root
     group: root
 

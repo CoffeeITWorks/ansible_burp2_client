@@ -15,15 +15,22 @@
 
 - include_tasks: build-burp.yml
 
+- name: ensure client dir exists
+  file:
+    path: "{{ burp_client_dir }}"
+    state: present
+    owner: root
+    group: root
+
 - name: set burp client configuration
   template:
     src: burp.conf.j2
-    dest: "{{ etc_dir }}/burp/burp.conf"
+    dest: "{{ burp_client_dir }}/burp.conf"
 
 - name: set burp client restore configuration
   template:
     src: burp-restore.conf.j2
-    dest: "{{ etc_dir }}/burp/burp-restore.conf"
+    dest: "{{ burp_client_dir }}/burp-restore.conf"
   when: not burp_server_port_per_operation_bool 
 
 - name: create burp folders
@@ -52,7 +59,7 @@
 - name: schedule cron.d jobs
   cron:
     name: burp client schedule
-    job: "[ -x {{ usr_dir }}/sbin/burp ] && {{ usr_dir }}/sbin/burp -a t >> {{ burp_client_logs }}/burp_client.log 2>&1"
+    job: "[ -x {{ usr_dir }}/sbin/burp ] && {{ usr_dir }}/sbin/burp -c {{ burp_client_dir }}/burp.conf -a t >> {{ burp_client_logs }}/burp_client.log 2>&1"
     user: root
     cron_file: burp_client
     minute: "7,27,47"

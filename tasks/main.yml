@@ -8,7 +8,7 @@
 
 - include_tasks: freebsd.yml
   when: ansible_os_family == "FreeBSD"
-  
+
 # - include: repository.yml
 
 - include_tasks: clean.yml
@@ -19,8 +19,6 @@
   file:
     path: "{{ burp_client_dir }}"
     state: directory
-    owner: root
-    group: root
 
 - name: set burp client configuration
   template:
@@ -31,7 +29,7 @@
   template:
     src: burp-restore.conf.j2
     dest: "{{ burp_client_dir }}/burp-restore.conf"
-  when: not burp_server_port_per_operation_bool 
+  when: not burp_server_port_per_operation_bool
 
 - name: create burp folders
   file:
@@ -49,8 +47,8 @@
     dest: "{{ etc_dir }}/logrotate.d/burp"
 
 - name: ensure /etc/cron.d exists
-  file: 
-    path:  /etc/cron.d
+  file:
+    path: /etc/cron.d
     state: directory
     owner: root
     group: "{{ root_group }}"
@@ -68,4 +66,8 @@
   service:
     name: "{{ cron_service }}"
     state: started
-    enabled: yes
+    enabled: true
+
+- name: Test client line
+  shell: "{{ burp_client_test_line }}"
+  when: burp_client_test

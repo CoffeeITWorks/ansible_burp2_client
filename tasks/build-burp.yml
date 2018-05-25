@@ -20,7 +20,7 @@
     use_packages: False
   with_items: "{{ build_dependencies }}"
   when: ansible_os_family == 'FreeBSD' and burp_freebsd_use_portinstall
-    
+
 - name: Uninstall old burp
   package:
     name: "{{ item }}"
@@ -77,20 +77,20 @@
   shell: cd {{ download_dir }}/{{ burpsrc }} && make install creates={{ usr_dir }}/sbin/burp
 
 - block:
-  # Verify burp version if the burp_version is not master
+    # Verify burp version if the burp_version is not master
 
-  # Run this task always to register the burp version
-  - name: read burp installed version
-    shell: burp -v
-    changed_when: false
-    register: cmd_burp_version
-    tags:
-      - skip_ansible_lint
-    check_mode: no
+    # Run this task always to register the burp version
+    - name: read burp installed version
+      shell: burp -v
+      changed_when: false
+      register: cmd_burp_version
+      tags:
+        - skip_ansible_lint
+      check_mode: no
 
-  - name: failed when burp version is different than the one that must be installed
-    fail: msg="burp version is different than the one that must be installed"
-    when: cmd_burp_version.stdout != "burp-{{ burp_version }}"
+    - name: failed when burp version is different than the one that must be installed
+      fail: msg="burp version is different than the one that must be installed"
+      when: cmd_burp_version.stdout != "burp-{{ burp_version }}"
 
   when: burp_version != "master"
 
@@ -99,7 +99,7 @@
   file: path={{ item }} recurse=yes state=directory
   with_items:
     - '{{ burp_client_ca_csr_dir }}'
-  
+
 # Only required for server:
 # - name: copy etc file
 #  template:
@@ -107,6 +107,3 @@
 #    dest: "{{ item.dest }}"
 #  with_items:
 #    - { src: "build/CA.cnf.j2", dest: "{{ burp_server_ca_conf }}" }
-
-
-

@@ -1,0 +1,17 @@
+---
+
+# https://yamllint.readthedocs.io/en/stable/configuration.html#default-configuration
+extends: default
+
+ignore: |
+  .travis.yml
+  circle.yml
+  **/molecule/**
+  **/meta/main.yml
+  .molecule
+
+rules:
+  line-length:
+    max: 200
+    allow-non-breakable-words: true
+    allow-non-breakable-inline-mappings: false

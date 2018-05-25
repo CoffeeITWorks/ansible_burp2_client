@@ -29,6 +29,9 @@ burp_client_ssl_key_password: "{{ burp_server_ssl_key_password | default('passwo
 burp_client_ssl_peer_cn: "burpserver"
 burp_client_logs: "/var/log/burp"
 
+burp_client_test: False
+burp_client_test_line: "burp -c {{ burp_client_dir }}/burp.conf -a l"
+
 ## Build vars:
 
 burp_force_reinstall: false

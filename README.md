@@ -35,18 +35,22 @@ Inside it you can add a file with the name of the group or the host where you wa
 
 *Required vars*:
 
-    burp_client_server: IP.ADD.RE.SS
+```yaml
+burp_client_server: IP.ADD.RE.SS
+burp_client_ssl_peer_cn: "servername" # same as ca_server_name in burp-server.conf on server (server hostname by default)
+burp_client_password: "password" # same password as set in incexc on server side
+```
 
 *Options vars:*
 
 ```yaml
+burp_server_port_per_operation_bool: true
 burp_client_port: "{{ burp_server_port | default(4971) }}"
 burp_client_status_port: "{{ burp_server_status_port | default(4972) }}"
 burp_client_port_restore: "{{ burp_restore_port | default(4973) }}"
 burp_client_status_port_restore: "{{ burp_restore_status_port | default(4974) }}"
 
 burp_client_pidfile: "/var/run/burp.pid"
-burp_client_password: "password"
 burp_client_protocol: "1"
 ```
 

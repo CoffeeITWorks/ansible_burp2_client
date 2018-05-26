@@ -12,6 +12,7 @@
       - name: "{{ burp_client_cname }}"
         password: "{{ burp_client_password }}"
     burp_client_test: True
+    burp_client_ssl_peer_cn: "{{ ansible_hostname }}"
   roles:
     - role: CoffeeITWorks.burp2_server
     - role: ansible_burp2_client

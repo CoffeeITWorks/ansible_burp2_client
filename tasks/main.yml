@@ -71,3 +71,4 @@
 - name: Test client line
   shell: "{{ burp_client_test_line }}"
   when: burp_client_test
+  changed_when: false

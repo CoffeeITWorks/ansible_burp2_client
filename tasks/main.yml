@@ -69,6 +69,7 @@
     enabled: true
 
 - name: Test client line
+# yamllint disable-line
   shell: "{{ burp_client_test_line }}"
   when: burp_client_test
   changed_when: false

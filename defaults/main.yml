@@ -29,7 +29,7 @@ burp_client_ssl_key_password: "{{ burp_server_ssl_key_password | default('passwo
 burp_client_ssl_peer_cn: "burpserver"
 burp_client_logs: "/var/log/burp"
 
-burp_client_test: False
+burp_client_test: false
 burp_client_test_line: "burp -c {{ burp_client_dir }}/burp.conf -a l"
 
 ## Build vars:
@@ -42,7 +42,7 @@ burpurl: "https://github.com/grke/burp/archive/{{ burp_version }}.{{ burpsrcext 
 # Directory that will be used as the location for the downloads§
 download_dir: "{{ ansible_env.HOME }}/burp"
 
-#Since version 2.1.10
+# Since version 2.1.10
 #   + Add the ability for the client to connect to different server ports
 # according to whether it is doing backup/restore/verify/list/delete.
 # These ports are based on: https://github.com/CoffeeITWorks/ansible_burp2_server/issues/11
@@ -62,4 +62,4 @@ burp_client_ports_per_operation:
 burp_client_server_can_override_includes: '1'
 
 # use ports instead of package to install sw on freebsd
-burp_freebsd_use_portinstall: True
+burp_freebsd_use_portinstall: true

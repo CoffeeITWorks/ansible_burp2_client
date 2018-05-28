@@ -2,7 +2,7 @@
 
 - name: ensure chache for apt is updated
   apt:
-    update_cache: yes
+    update_cache: true
     cache_valid_time: 43200
   changed_when: false
   when: ansible_os_family == 'Debian'
@@ -17,7 +17,7 @@
   portinstall:
     name: "{{ item }}"
     state: present
-    use_packages: False
+    use_packages: false
   with_items: "{{ build_dependencies }}"
   when: ansible_os_family == 'FreeBSD' and burp_freebsd_use_portinstall
 
@@ -44,7 +44,7 @@
   get_url:
     url: "{{ burpurl }}"
     dest: "{{ download_dir }}/{{ burpsrc }}.{{ burpsrcext }}"
-    validate_certs: no
+    validate_certs: false
 
 - name: Unpack Burp source files tar.gz
   shell: cd {{ download_dir }} && tar -xzvf {{ burpsrc }}.{{ burpsrcext }} creates={{ download_dir }}/{{ burpsrc }}

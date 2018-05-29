@@ -70,7 +70,7 @@
   register: stb
 
 - name: Uninstall burp
-# yamllint disable-line
+  # yamllint disable-line
   shell: cd {{ download_dir }}/{{ burpsrc }} && make uninstall removes={{ usr_dir }}/sbin/burp
   when: stb.stat.exists and ( unpack_src_tar.changed or unpack_src_zip.changed )
 

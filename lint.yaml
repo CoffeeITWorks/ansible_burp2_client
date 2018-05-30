@@ -15,3 +15,4 @@ rules:
     max: 200
     allow-non-breakable-words: true
     allow-non-breakable-inline-mappings: false
+  comments-indentation: disable

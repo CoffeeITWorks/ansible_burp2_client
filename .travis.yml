@@ -18,7 +18,7 @@ script:
   - molecule converge
   - molecule syntax
   - molecule idempotence
-  - molecule lint
+  # - molecule lint
 
 notifications:
     webhooks: https://galaxy.ansible.com/api/v1/notifications/

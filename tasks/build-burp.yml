@@ -81,7 +81,7 @@
 
   # Run this task always to register the burp version
   - name: read burp installed version
-    shell: burp -v
+    shell: burp -V
     changed_when: false
     register: cmd_burp_version
     tags:
@@ -107,6 +107,3 @@
 #    dest: "{{ item.dest }}"
 #  with_items:
 #    - { src: "build/CA.cnf.j2", dest: "{{ burp_server_ca_conf }}" }
-
-
-

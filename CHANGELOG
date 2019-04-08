@@ -1,3 +1,11 @@
+1.6.0
+=====
+
+* Update to burp 2.2.18 stable
+* remove deprecated burp-restore client
+* fixes for Fedora cron jobs
+* default True for multiple ports per operation
+
 1.5
 ===
 

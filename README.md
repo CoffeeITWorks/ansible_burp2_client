@@ -36,7 +36,13 @@ Inside it you can add a file with the name of the group or the host where you wa
 
 *Required vars*:
 
-    burp_client_server: IP.ADD.RE.SS
+```yaml
+# You should change these in your group_vars/host_vars
+burp_client_server: "192.168.0.1"      # IP of burp server
+burp_client_ssl_peer_cn: "burpserver"  # Hostname of burp server
+```
+
+When you use group per location and have a burp2 server per location, you can use these variables per location/group.
 
 *Options vars:*
 

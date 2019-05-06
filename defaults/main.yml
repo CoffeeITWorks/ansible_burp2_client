@@ -7,7 +7,11 @@ usr_dir: "/usr"
 root_group: "root"
 
 burp_client_progress_counter: "1"
+
+# You should change these in your group_vars/host_vars
 burp_client_server: "192.168.0.1"
+burp_client_ssl_peer_cn: "burpserver"
+
 
 burp_client_port: "{{ burp_server_port | default(4971) }}"
 burp_client_status_port: "{{ burp_server_status_port | default(4972) }}"
@@ -22,7 +26,6 @@ burp_client_ssl_cert_ca: "{{ etc_dir }}/burp/ssl_cert_ca.pem"
 burp_client_ssl_cert: "{{ etc_dir }}/burp/ssl_cert-client.pem"
 burp_client_ssl_key: "{{ etc_dir }}/burp/ssl_cert-client.key"
 burp_client_ssl_key_password: "{{ burp_server_ssl_key_password | default('password') }}"
-burp_client_ssl_peer_cn: "burpserver"
 burp_client_logs: "/var/log/burp"
 
 ## Build vars:

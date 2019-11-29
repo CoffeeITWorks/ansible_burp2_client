@@ -26,6 +26,14 @@
     dest: "{{ etc_dir }}/burp/burp-restore.conf"
   when: not burp_server_port_per_operation_bool 
 
+- name: place the zfs snapshot-backup-over-a-fifo script on the client
+  copy:
+    dest: "{{ etc_dir }}/burp/zfs_script"
+    src: "zfs_script"
+    owner: root
+    group: "{{ root_group }}"
+    mode: 0755
+
 - name: create burp folders
   file:
     path: "{{ burp_client_logs }}"

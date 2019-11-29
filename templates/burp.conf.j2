@@ -24,8 +24,17 @@ ssl_peer_cn = {{ burp_client_ssl_peer_cn }}
 {% for l in burp_client_ports_per_operation %}
 {{ l }}
 {% endfor %}
-
 {% endif %}
+
+{% if burp_client_backup_script is defined %}
+backup_script={{ burp_client_backup_script | default("{{ etc_dir }}/{{burp/zfs_script") }}
+{% for backup_script_arg in burp_client_backup_script_args %}
+backup_script_arg={{ backup_script_arg }}
+{% endfor %}
+backup_script_post_run_on_fail={{ burp_client_backup_script_post_run_on_fail }}
+{% endif %}
+
+
 server_can_override_includes = {{ burp_client_server_can_override_includes }}
 {% if burp_client_includes is defined %}
 {% for include in burp_client_includes %}

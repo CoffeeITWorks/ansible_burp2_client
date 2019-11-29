@@ -1,0 +1,6 @@
+---
+- hosts: all
+  #serial: 1
+  strategy: free # improve parallelism but pause module doesn't works with it.
+  roles:
+    - role: ansible_burp2_client

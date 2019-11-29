@@ -1,0 +1,8 @@
+---
+
+- name: freebsd | install logrotate
+  portinstall:
+    name: "logrotate"
+    state: present
+    use_packages: False
+  when: burp_freebsd_use_portinstall

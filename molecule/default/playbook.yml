@@ -14,5 +14,5 @@
     burp_client_test: True
     burp_client_ssl_peer_cn: "{{ ansible_hostname }}"
   roles:
-    - role: CoffeeITWorks.burp2_server
+    - role: coffeeitworks.burp2_server
     - role: ansible_burp2_client

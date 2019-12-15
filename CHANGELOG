@@ -1,4 +1,4 @@
-1.6
+1.7
 ===
 
 * Changes to allow use of different client path as client.
@@ -7,6 +7,14 @@
 * Added ansible lint check with molecule.
 * Added burp2_server role in automatic tests with molecule so now the client is checked to see if it really works after setup.
 * Added var `burp_client_test` and `burp_client_test_line` as options to enable check of the client during deploy.
+
+1.6
+===
+
+* Update to burp 2.2.18 stable
+* remove deprecated burp-restore client
+* fixes for Fedora cron jobs
+* default True for multiple ports per operation
 
 1.5
 ===

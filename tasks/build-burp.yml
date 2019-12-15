@@ -38,7 +38,9 @@
   when: burp_force_reinstall | bool
 
 - name: Ensure download directory is present
-  file: path={{ download_dir }} state=directory
+  file: 
+    path: "{{ download_dir }}"
+    state: directory
 
 - name: GET burp backup and restore
   get_url:
@@ -66,7 +68,8 @@
   shell: cd {{ download_dir }}/{{ burpsrc }} && make creates={{ download_dir }}/{{ burpsrc }}/burp
 
 - name: check if burp is installed
-  stat: path="{{ usr_dir }}/sbin/burp"
+  stat: 
+    path: "{{ usr_dir }}/sbin/burp"
   register: stb
 
 # yamllint disable
@@ -78,27 +81,31 @@
 - name: Make install
   shell: cd {{ download_dir }}/{{ burpsrc }} && make install creates={{ usr_dir }}/sbin/burp
 
-- block:
+- name: Verify burp version
+  block:
     # Verify burp version if the burp_version is not master
 
-    # Run this task always to register the burp version
-    - name: read burp installed version
-      shell: burp -v
-      changed_when: false
-      register: cmd_burp_version
-      tags:
-        - skip_ansible_lint
-      check_mode: false
+  # Run this task always to register the burp version
+  - name: read burp installed version
+    shell: burp -V
+    changed_when: false
+    register: cmd_burp_version
+    tags:
+      - skip_ansible_lint
+    check_mode: no
 
-    - name: failed when burp version is different than the one that must be installed
-      fail: msg="burp version is different than the one that must be installed"
-      when: cmd_burp_version.stdout != "burp-{{ burp_version }}"
+  - name: failed when burp version is different than the one that must be installed
+    fail: msg="burp version is different than the one that must be installed"
+    when: cmd_burp_version.stdout != "burp-{{ burp_version }}"
 
   when: burp_version != "master"
 
 # Ensure to not create /etc/burp/CA manually because it will break auto generated certificate
 - name: create etc directories
-  file: path={{ item }} recurse=yes state=directory
+  file:
+    path: "{{ item }}"
+    recurse: yes
+    state: directory
   with_items:
     - '{{ burp_client_ca_csr_dir }}'
 

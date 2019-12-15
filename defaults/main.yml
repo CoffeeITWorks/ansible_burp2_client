@@ -7,12 +7,14 @@ usr_dir: "/usr"
 root_group: "root"
 
 burp_client_progress_counter: "1"
+
+# You should change these in your group_vars/host_vars
 burp_client_server: "192.168.0.1"
+burp_client_ssl_peer_cn: "burpserver"
+
 
 burp_client_port: "{{ burp_server_port | default(4971) }}"
 burp_client_status_port: "{{ burp_server_status_port | default(4972) }}"
-burp_client_port_restore: "{{ burp_restore_port | default(4973) }}"
-burp_client_status_port_restore: "{{ burp_restore_status_port | default(4974) }}"
 
 burp_client_dir: "{{ etc_dir }}/burp"
 burp_client_pidfile: "/var/run/burp.pid"
@@ -26,7 +28,6 @@ burp_client_ssl_cert_ca: "{{ burp_client_dir }}/ssl_cert_ca.pem"
 burp_client_ssl_cert: "{{ burp_client_dir }}/ssl_cert-client.pem"
 burp_client_ssl_key: "{{ burp_client_dir }}/ssl_cert-client.key"
 burp_client_ssl_key_password: "{{ burp_server_ssl_key_password | default('password') }}"
-burp_client_ssl_peer_cn: "burpserver"
 burp_client_logs: "/var/log/burp"
 
 burp_client_test: false
@@ -35,7 +36,7 @@ burp_client_test_line: "burp -c {{ burp_client_dir }}/burp.conf -a l"
 ## Build vars:
 
 burp_force_reinstall: false
-burp_version: "2.1.32"
+burp_version: "2.2.18"
 burpsrcext: 'tar.gz'
 burpsrc: "burp-{{ burp_version }}"
 burpurl: "https://github.com/grke/burp/archive/{{ burp_version }}.{{ burpsrcext }}"
@@ -47,8 +48,7 @@ download_dir: "{{ ansible_env.HOME }}/burp"
 # according to whether it is doing backup/restore/verify/list/delete.
 # These ports are based on: https://github.com/CoffeeITWorks/ansible_burp2_server/issues/11
 # Compatible since burp 2.1.10
-# This option will disable the creation of /etc/burp/burp-restore.conf too
-burp_server_port_per_operation_bool: false
+burp_server_port_per_operation_bool: True
 burp_server_port_operation_restore: 4975
 burp_server_port_operation_verify: 4976
 burp_server_port_operation_list: 4977

@@ -1,12 +1,13 @@
 1.7
 ===
 
-* Changes to allow use of different client path as client.
-* Allow to use different client path allows to use this role to setup burp client in  a burp server (to backup /etc/burp in other burp server for example or anything else).
+* #15 Changes to allow use of different client path as client.
+* #15 Allow to use different client path allows to use this role to setup burp client in  a burp server (to backup /etc/burp in other burp server for example or anything else).
 * Added more fixes in documentation and added var `burp_client_ssl_peer_cn` as required with better documentation.
 * Added ansible lint check with molecule.
 * Added burp2_server role in automatic tests with molecule so now the client is checked to see if it really works after setup.
 * Added var `burp_client_test` and `burp_client_test_line` as options to enable check of the client during deploy.
+* #17 - align build-burp with burp2_server role and have better compile options
 
 1.6
 ===

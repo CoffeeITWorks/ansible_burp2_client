@@ -113,10 +113,7 @@
     recurse: yes 
     state: directory
   with_items:
-    - '{{ burp_server_etc }}/autoupgrade'
     - '{{ burp_client_ca_csr_dir }}'
-    - '{{ burp_server_etc }}/clientconfdir/incexc'
-    - '{{ burp_server_etc }}/clientconfdir/profiles'
 
 # Only required for server:
 # - name: copy etc file

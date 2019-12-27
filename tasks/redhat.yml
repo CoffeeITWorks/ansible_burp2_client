@@ -1,24 +1,13 @@
 ---
-- name: redhat | installing epel repo (RedHat)
+
+- name: redhat | install EPEL release package for RHEL
+  yum:
+    name: "https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm"
+    state: present
+  when: ansible_distribution == 'Red Hat Enterprise Linux'
+
+- name: redhat | install EPEL release package for Centos
   yum:
     name: "epel-release"
     state: present
-  when: ansible_distribution != "Fedora"
-
-- name: redhat | installing dependencies
-  yum:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - 'python-devel'
-    - 'python-pip'
-  when: ansible_distribution != "Fedora"
-
-- name: redhat | installing dependencies
-  dnf:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - 'python-devel'
-    - 'python-pip'
-  when: ansible_distribution == "Fedora"
+  when: ansible_distribution == 'CentOS'

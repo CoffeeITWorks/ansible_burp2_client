@@ -14,8 +14,8 @@ lint:
 platforms:
 
   - name: ansible_test-01
-    image: solita/ubuntu-systemd:16.04
-    privileged: True
+    image: paulfantom/ubuntu-molecule:16.04
+    #privileged: True
     command: /sbin/init
     capabilities:
       - SYS_ADMIN    
@@ -23,11 +23,6 @@ platforms:
       - "/sys/fs/cgroup:/sys/fs/cgroup:ro"        
     groups:
       - group1
-
-  - name: ansible_test-02
-    image: ubuntu:trusty     
-    groups:
-      - groupold
 
   - name: ansible_test-03
     image: centos/systemd
@@ -36,18 +31,7 @@ platforms:
       - SYS_ADMIN
     volumes:
       - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    privileged: True
-    groups:
-      - group1
-
-  - name: ansible_test-04
-    image: fedora:latest
-    privileged: True
-    command: /sbin/init
-    capabilities:
-      - SYS_ADMIN    
-    volumes:
-      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"        
+    #privileged: True
     groups:
       - group1
 

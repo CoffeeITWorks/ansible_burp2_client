@@ -18,7 +18,6 @@ ansible burp2_client deploy and maintenance role.
 This roles builds burp version specified on defaults/main.yml. 
 Also configures it to get it working and maintained in a centralized way.
 
-
 Requirements
 ------------
 
@@ -40,6 +39,7 @@ Inside it you can add a file with the name of the group or the host where you wa
 # You should change these in your group_vars/host_vars
 burp_client_server: "192.168.0.1"      # IP of burp server
 burp_client_ssl_peer_cn: "burpserver"  # Hostname of burp server
+burp_client_password: "password" # same password as set in incexc on server side
 ```
 
 When you use group per location and have a burp2 server per location, you can use these variables per location/group.
@@ -47,11 +47,11 @@ When you use group per location and have a burp2 server per location, you can us
 *Options vars:*
 
 ```yaml
+burp_server_port_per_operation_bool: true
 burp_client_port: "{{ burp_server_port | default(4971) }}"
 burp_client_status_port: "{{ burp_server_status_port | default(4972) }}"
 
 burp_client_pidfile: "/var/run/burp.pid"
-burp_client_password: "password"
 burp_client_protocol: "1"
 ```
 

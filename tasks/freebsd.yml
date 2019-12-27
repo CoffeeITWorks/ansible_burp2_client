@@ -4,5 +4,5 @@
   portinstall:
     name: "logrotate"
     state: present
-    use_packages: False
+    use_packages: false
   when: burp_freebsd_use_portinstall

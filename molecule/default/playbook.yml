@@ -4,5 +4,15 @@
   vars:
     burp_module_test_client: false
     burp_module_agent: false
+    burp_client_dir: "{{ etc_dir }}/burp_client2"
+    burp_client_server: 'localhost'
+    burp_client_cname: 'burp_client2'
+    burp_client_password: burp_client_password1
+    burp2_add_manual_clients:
+      - name: "{{ burp_client_cname }}"
+        password: "{{ burp_client_password }}"
+    burp_client_test: True
+    burp_client_ssl_peer_cn: "{{ ansible_hostname }}"
   roles:
+    - role: coffeeitworks.burp2_server
     - role: ansible_burp2_client

@@ -12,6 +12,7 @@ platforms:
   - name: ansible_test-01
     image: "percygrunwald/docker-ubuntu1804-ansible:latest"
     #privileged: True
+    command: /sbin/init
     pre_build_image: true
     capabilities:
       - SYS_ADMIN
@@ -26,6 +27,7 @@ platforms:
   - name: ansible_test-03
     image: docker.io/pycontribs/centos:7
     pre_build_image: true
+    command: /sbin/init
     capabilities:
       - SYS_ADMIN
     volumes:

@@ -5,9 +5,6 @@ provisioner:
   config_options:
     defaults:
       callback_whitelist: profile_tasks  
-  lint:
-    name: ansible-lint
-    enabled: False
   env:
     # if not set wants to use libvirt on my box
     VAGRANT_DEFAULT_PROVIDER: virtualbox
@@ -24,9 +21,3 @@ platforms:
     # https://www.vagrantup.com/docs/synced-folders/basic_usage.html
     instance_raw_config_args:
       - "vm.synced_folder '.', '/vagrant', disabled: true"
-scenario:
-  name: freebsd
-verifier:
-  name: testinfra
-  options:
-    verbose: true

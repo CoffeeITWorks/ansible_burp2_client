@@ -7,25 +7,41 @@ dependency:
     role-file: dev_requirements.yml  # this file is at the root of the git project same place as molecule is executed
 driver:
   name: docker
-lint:
-  name: yamllint
-  options:
-    config-file: lint.yaml
 platforms:
 
-  - name: ansible_test-01
-    image: paulfantom/ubuntu-molecule:16.04
+  - name: ansible_burp2_client-01
+    image: "geerlingguy/docker-ubuntu1804-ansible:latest"
     #privileged: True
     command: /sbin/init
+    pre_build_image: true
     capabilities:
-      - SYS_ADMIN    
+      - SYS_ADMIN
+    tmpfs:
+      - /run
+      - /tmp
     volumes:
-      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"        
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
     groups:
       - group1
 
-  - name: ansible_test-03
-    image: centos/systemd
+  - name: ansible_burp2_client-02
+    image: "geerlingguy/docker-debian9-ansible"
+    #privileged: True
+    command: /sbin/init
+    pre_build_image: true
+    capabilities:
+      - SYS_ADMIN
+    tmpfs:
+      - /run
+      - /tmp
+    volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    groups:
+      - use_pip_package
+
+  - name: ansible_burp2_client-03
+    image: docker.io/pycontribs/centos:7
+    pre_build_image: true
     command: /sbin/init
     capabilities:
       - SYS_ADMIN
@@ -34,6 +50,7 @@ platforms:
     #privileged: True
     groups:
       - group1
+
 
 provisioner:
   name: ansible
@@ -46,13 +63,3 @@ provisioner:
         burpsrcext: "zip"
         burp_version: "master"
         burp_server_port_per_operation_bool: true
-  lint:
-    name: ansible-lint
-
-scenario:
-  name: default
-
-verifier:
-  name: testinfra
-  lint:
-    name: flake8

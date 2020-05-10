@@ -13,6 +13,8 @@
         password: "{{ burp_client_password }}"
     burp_client_test: True
     burp_client_ssl_peer_cn: "{{ ansible_hostname }}"
+    # Configure Burp Autoupgrade
+    burp_server_autoupgrade_enabled: false
   roles:
     - role: coffeeitworks.burp2_server
     - role: ansible_burp2_client

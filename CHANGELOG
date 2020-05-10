@@ -1,6 +1,9 @@
-1.7.1
+1.7.3
 =====
 * update molecule tests to v3
+1.7.2
+=====
+* fix bug introduced in latest release
 1.7
 ===
 

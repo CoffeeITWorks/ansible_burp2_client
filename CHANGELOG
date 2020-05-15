@@ -1,3 +1,7 @@
+1.8.0
+=====
+* update tests to debian 10
+
 1.7.3
 =====
 * update molecule tests to v3

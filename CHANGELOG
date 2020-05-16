@@ -1,3 +1,7 @@
+1.8.1
+=====
+* support centos 8
+
 1.8.0
 =====
 * update tests to debian 10

@@ -32,13 +32,10 @@ burp_client_ssl_key: "{{ burp_client_dir }}/ssl_cert-client.key"
 burp_client_ssl_key_password: "{{ burp_server_ssl_key_password | default('password') }}"
 burp_client_logs: "/var/log/burp"
 
-<<<<<<< HEAD
 # client backup script 
 burp_client_backup_script_post_run_on_fail: 1
-=======
 burp_client_test: false
 burp_client_test_line: "burp -c {{ burp_client_dir }}/burp.conf -a l"
->>>>>>> 81fcc1a98da1dea73e6be731bfe24e847cea96eb
 
 ## Build vars:
 

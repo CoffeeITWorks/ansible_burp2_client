@@ -8,23 +8,22 @@
 
 - include_tasks: freebsd.yml
   when: ansible_os_family == "FreeBSD"
-  
+
 # - include: repository.yml
 
 - include_tasks: clean.yml
 
 - include_tasks: build-burp.yml
 
+- name: ensure client dir exists
+  file:
+    path: "{{ burp_client_dir }}"
+    state: directory
+
 - name: set burp client configuration
   template:
     src: burp.conf.j2
-    dest: "{{ etc_dir }}/burp/burp.conf"
-
-- name: set burp client restore configuration
-  template:
-    src: burp-restore.conf.j2
-    dest: "{{ etc_dir }}/burp/burp-restore.conf"
-  when: not burp_server_port_per_operation_bool 
+    dest: "{{ burp_client_dir }}/burp.conf"
 
 - name: place the zfs snapshot-backup-over-a-fifo script on the client
   copy:
@@ -50,8 +49,8 @@
     dest: "{{ etc_dir }}/logrotate.d/burp"
 
 - name: ensure /etc/cron.d exists
-  file: 
-    path:  /etc/cron.d
+  file:
+    path: /etc/cron.d
     state: directory
     owner: root
     group: "{{ root_group }}"
@@ -60,7 +59,7 @@
 - name: schedule cron.d jobs
   cron:
     name: burp client schedule
-    job: "[ -x {{ usr_dir }}/sbin/burp ] && {{ usr_dir }}/sbin/burp -a t >> {{ burp_client_logs }}/burp_client.log 2>&1"
+    job: "[ -x {{ usr_dir }}/sbin/burp ] && {{ usr_dir }}/sbin/burp -c {{ burp_client_dir }}/burp.conf -a t >> {{ burp_client_logs }}/burp_client.log 2>&1"
     user: root
     cron_file: burp_client
     minute: "7,27,47"
@@ -69,4 +68,11 @@
   service:
     name: "{{ cron_service }}"
     state: started
-    enabled: yes
+    enabled: true
+
+- name: Test client line
+# yamllint disable
+  shell: "{{ burp_client_test_line }}"
+  when: burp_client_test
+  changed_when: false
+# yamllint enable

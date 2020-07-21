@@ -3,6 +3,7 @@
 
 build_dependencies:
   - make
+  #- pkg-config
   - check
   - gcc-c++
   - librsync-devel
@@ -14,11 +15,13 @@ build_dependencies:
   - yajl-devel
   - automake
   - libtool
-  - autoconf    # provides autoreconf
+  - autoconf # provides autoreconf
+  #- libffi-devel # burpui dependency for cffi package
   - unzip       # required to unzip from master.zip archive for example
   - openssl     # ensure it is installed, if not burp_ca will not work
   - ncurses     # from package dependencies
   - libgcc      # from package dependencies
   - cronie      # To enable crontab jobs
+  - cronie-anacron
 
 cron_service: crond

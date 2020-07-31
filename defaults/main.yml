@@ -43,7 +43,7 @@ burp_force_reinstall: false
 burp_version: "2.2.18"
 burpsrcext: 'tar.gz'
 burpsrc: "burp-{{ burp_version }}"
-burp_configure_line: "CFLAGS='-O2 -march=native -mtune=native -mfpmath=sse' ./configure "  # This only works on Linux not Freebsd: -floop-parallelize-all -ftree-parallelize-loops=4
+burp_configure_line: "CFLAGS='-O2 -march=native -mtune=native -mfpmath=sse' sbindir={{ burp_bin_path }} ./configure "  # This only works on Linux not Freebsd: -floop-parallelize-all -ftree-parallelize-loops=4
 burpurl: "https://github.com/grke/burp/archive/{{ burp_version }}.{{ burpsrcext }}"
 # Directory that will be used as the location for the downloads§
 download_dir: "{{ ansible_env.HOME }}/burp"

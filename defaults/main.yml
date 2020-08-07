@@ -43,7 +43,7 @@ burp_force_reinstall: false
 burp_version: "2.2.18"
 burpsrcext: 'tar.gz'
 burpsrc: "burp-{{ burp_version }}"
-burp_configure_line: "CFLAGS='-O2 -march=native -mtune=native -mfpmath=sse -floop-parallelize-all -ftree-parallelize-loops={{ ansible_processor_vcpus }} sbindir={{ burp_bin_path }}' ./configure "
+burp_configure_line: "CFLAGS='-O2 -march=native -mtune=native -mfpmath=sse -floop-parallelize-all -ftree-parallelize-loops={{ ansible_processor_vcpus }}' sbindir={{ burp_bin_path }} ./configure "
 burpurl: "https://github.com/grke/burp/archive/{{ burp_version }}.{{ burpsrcext }}"
 # Directory that will be used as the location for the downloads§
 download_dir: "{{ ansible_env.HOME }}/burp"

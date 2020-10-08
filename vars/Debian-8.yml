@@ -1,5 +1,5 @@
 ---
-# file: vars/Debian-8.yml
+# file: vars/Debian.yml
 
 build_dependencies:
   - make
@@ -21,7 +21,7 @@ build_dependencies:
   - libgcc1      # from package dependencies
   - libc6        # from package dependencies
   - libacl1      # from package dependencies
-  - libssl1.0.0  # from package dependencies
+  - libssl1.1    # from package dependencies (debian9,debian10,Ubuntu18+)
   - libtinfo5    # from package dependencies
   - zlib1g       # from package dependencies
   - cron         # required to schedule jobs

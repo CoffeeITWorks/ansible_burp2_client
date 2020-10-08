@@ -8,11 +8,13 @@
 - name: Gather OS Specific Variables
   include_vars: "{{ item }}"
   with_first_found:
-    - "../vars/{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
-    - "../vars/{{ ansible_distribution }}.yml"
-    - "../vars/{{ ansible_os_family }}.yml"
-    - "../vars/defaults.yml"
-
+    - files:
+        - "../vars/{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+        - "../vars/{{ ansible_distribution }}.yml"
+        - "../vars/{{ ansible_os_family }}.yml"
+        - "../vars/defaults.yml"
+      skip: True
+  
 # If you have doubts to set variables, use:
 # http://pkgs.org
 # And ofcourse any good documentation

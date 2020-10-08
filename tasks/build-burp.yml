@@ -83,9 +83,6 @@
 
 - name: Make install
   shell: cd {{ download_dir }}/{{ burpsrc }} && make install creates={{ burp_bin_path }}
-  notify: 
-    - restart burp server
-    - restart burp server systemd
 
 - name: Verify burp version
   block:

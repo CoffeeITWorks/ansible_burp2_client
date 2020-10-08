@@ -25,6 +25,14 @@
     src: burp.conf.j2
     dest: "{{ burp_client_dir }}/burp.conf"
 
+- name: place the zfs snapshot-backup-over-a-fifo script on the client
+  copy:
+    dest: "{{ etc_dir }}/burp/zfs_script"
+    src: "zfs_script"
+    owner: root
+    group: "{{ root_group }}"
+    mode: 0755
+
 - name: create burp folders
   file:
     path: "{{ burp_client_logs }}"
@@ -51,7 +59,7 @@
 - name: schedule cron.d jobs
   cron:
     name: burp client schedule
-    job: "[ -x {{ usr_dir }}/sbin/burp ] && {{ usr_dir }}/sbin/burp -c {{ burp_client_dir }}/burp.conf -a t >> {{ burp_client_logs }}/burp_client.log 2>&1"
+    job: "[ -x {{ burp_bin_path }} ] && {{ burp_bin_path }} -c {{ burp_client_dir }}/burp.conf -a t >> {{ burp_client_logs }}/burp_client.log 2>&1"
     user: root
     cron_file: burp_client
     minute: "7,27,47"

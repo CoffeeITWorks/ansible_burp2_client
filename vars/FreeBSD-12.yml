@@ -1,0 +1,21 @@
+# file: vars/FreeBSD-11.yml
+
+# FreeBSD has a different paths and root group
+etc_dir: "/usr/local/etc"
+usr_dir: "/usr/local"
+root_group: "wheel"
+
+
+build_dependencies:
+  - autotools
+  - automake
+  - uthash
+  - librsync2
+    
+# burp2_client_packages:
+  #  - burp
+
+# custom FreeBSD paths differet to the defaults
+burp_client_ca_burp_ca: "/usr/local/sbin/burp_ca"
+
+cron_service: cron

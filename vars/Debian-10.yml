@@ -1,0 +1,34 @@
+---
+# file: vars/Debian-9.yml
+
+build_dependencies:
+  - make
+  - pkg-config
+  - check
+  - g++
+  - librsync-dev
+  - libz-dev
+  - libssl-dev
+  - uthash-dev
+  - libyajl-dev
+  - autoconf
+  - automake
+  - libtool
+  - dh-autoreconf
+  - unzip       # required to unzip from master.zip archive for example
+  - openssl
+  - libncurses5 # from package dependencies
+  - libgcc1     # from package dependencies
+  - libc6       # from package dependencies
+  - libacl1     # from package dependencies
+  - libtinfo5   # from package dependencies
+  - zlib1g      # from package dependencies
+  - cron        # required to schedule jobs
+
+cron_service: cron
+
+# burp2_client_packages:
+#  - burp-client
+
+# burp2_client_apt_sources:
+#  - "deb http://ziirish.info/repos/debian/{{ ansible_distribution_release }} zi-latest main"

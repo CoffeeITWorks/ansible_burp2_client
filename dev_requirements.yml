@@ -1,4 +1,5 @@
 ---
 
 - src: https://github.com/CoffeeITWorks/ansible_burp2_server.git
+  name: coffeeitworks.burp2_server
   version: develop

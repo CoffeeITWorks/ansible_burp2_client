@@ -46,7 +46,7 @@
     state: directory
     owner: root
     group: "{{ root_group }}"
-    mode: 0755
+    mode: '0755'
 
 - name: schedule cron.d jobs
   cron:

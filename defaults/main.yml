@@ -34,6 +34,9 @@ burp_client_logs: "/var/log/burp"
 
 burp_client_test: false
 burp_client_test_line: "burp -c {{ burp_client_dir }}/burp.conf -a l"
+# If defined will append extra configs to burp.conf client file, i.e.
+# burp_client_extra_configs:
+# - 'backup_script_pre = /usr/local/bin/custom_script.sh'
 
 ## Build vars:
 

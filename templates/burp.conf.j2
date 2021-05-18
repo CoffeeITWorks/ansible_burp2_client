@@ -38,3 +38,9 @@ include = {{ include }}
 exclude = {{ exclude }}
 {% endfor %}
 {% endif %}
+
+{% if burp_client_extra_configs is defined %}
+{% for l in burp_client_extra_configs %}
+{{ l }}
+{% endfor %}
+{% endif %}

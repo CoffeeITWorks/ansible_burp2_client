@@ -21,16 +21,6 @@
   with_items: "{{ build_dependencies }}"
   when: ansible_os_family == 'FreeBSD' and burp_freebsd_use_portinstall
 
-- name: Uninstall old burp
-  package:
-    name: "{{ item }}"
-    state: absent
-  with_items:
-    - burp
-    - burp-client
-    - burp-server
-    - burp-core
-
 - name: force reinstall burp
   file:
     path: "{{ download_dir }}"

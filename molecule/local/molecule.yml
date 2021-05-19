@@ -6,13 +6,13 @@ dependency:
     ignore-errors: True
     role-file: dev_requirements.yml  # this file is at the root of the git project same place as molecule is executed
 driver:
-  name: docker
+  name: podman
 platforms:
 
   - name: ansible_burp2_client-01
-    image: "geerlingguy/docker-ubuntu1804-ansible:latest"
-    privileged: True
-    command: /sbin/init
+    image: "geerlingguy/docker-ubuntu2004-ansible:latest"
+    #privileged: True
+    command: "/lib/systemd/systemd"
     pre_build_image: true
     capabilities:
       - SYS_ADMIN
@@ -24,40 +24,10 @@ platforms:
     groups:
       - group1
 
-  - name: ansible_burp2_client-02
-    image: "geerlingguy/docker-debian9-ansible"
-    privileged: True
-    command: /sbin/init
-    pre_build_image: true
-    capabilities:
-      - SYS_ADMIN
-    tmpfs:
-      - /run
-      - /tmp
-    volumes:
-      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    groups:
-      - use_pip_package
-
-  - name: ansible_burp2_client-03
-    image: "geerlingguy/docker-debian10-ansible"
-    privileged: True
-    command: /sbin/init
-    pre_build_image: true
-    capabilities:
-      - SYS_ADMIN
-    tmpfs:
-      - /run
-      - /tmp
-    volumes:
-      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    groups:
-      - use_pip_package
-
   - name: ansible_burp2_client-04
     image: "geerlingguy/docker-centos8-ansible"
-    command: /sbin/init
-    privileged: True
+    command: /usr/sbin/init
+    #privileged: True
     pre_build_image: true
     capabilities:
       - SYS_ADMIN
@@ -75,7 +45,7 @@ provisioner:
     defaults:
       callback_whitelist: profile_tasks
     ssh_connection:
-      pipelining: true
+      pipelining: false
       ssh_args: -o ControlMaster=auto -o ControlPersist=60s
   inventory:
     group_vars:

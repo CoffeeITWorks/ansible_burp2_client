@@ -1,7 +1,8 @@
 ---
 # file: tasks/main.yml
 
-- include_tasks: multi_os.yml
+- name: Include multi_os tasks
+  include_tasks: multi_os.yml
 
 - include_tasks: redhat.yml
   when: ansible_os_family == "RedHat"
@@ -11,7 +12,9 @@
 
 # - include: repository.yml
 
-- include_tasks: clean.yml
+- name: Include clean tasks
+  include_tasks: clean.yml
+  when: burp_client_clean_installed | bool
 
 - include_tasks: build-burp.yml
 
@@ -46,7 +49,7 @@
     state: directory
     owner: root
     group: "{{ root_group }}"
-    mode: 0755
+    mode: '0755'
 
 - name: schedule cron.d jobs
   cron:

@@ -8,6 +8,8 @@ root_group: "root"
 burp_usr_path: '/usr/local'
 burp_bin_path: "{{ burp_usr_path }}/sbin/burp"
 
+burp_client_clean_installed: false
+
 burp_client_progress_counter: "1"
 
 # You should change these in your group_vars/host_vars

@@ -55,17 +55,19 @@ platforms:
       - use_pip_package
 
   - name: ansible_burp2_client-04
-    image: docker.io/pycontribs/centos:7
-    pre_build_image: true
+    image: "geerlingguy/docker-centos8-ansible"
     command: /sbin/init
+    #privileged: True
+    pre_build_image: true
     capabilities:
       - SYS_ADMIN
+    tmpfs:
+      - /run
+      - /tmp
     volumes:
       - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    #privileged: True
     groups:
-      - group1
-
+      - use_pip_package
 
 provisioner:
   name: ansible

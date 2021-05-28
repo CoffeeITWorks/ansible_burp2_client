@@ -1,0 +1,40 @@
+---
+dependency:
+  name: galaxy
+  options:
+    ignore-certs: True
+    ignore-errors: True
+    role-file: dev_requirements.yml  # this file is at the root of the git project same place as molecule is executed
+driver:
+  name: docker
+platforms:
+
+  - name: ansible_burp2_client-03
+    image: "geerlingguy/docker-ubuntu2004-ansible"
+    privileged: True
+    command: /sbin/init
+    pre_build_image: true
+    capabilities:
+      - SYS_ADMIN
+    tmpfs:
+      - /run
+      - /tmp
+    volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    groups:
+      - use_pip_package
+
+provisioner:
+  name: ansible
+  config_options:
+    defaults:
+      callback_whitelist: profile_tasks
+    ssh_connection:
+      pipelining: true
+      ssh_args: -o ControlMaster=auto -o ControlPersist=60s
+  inventory:
+    group_vars:
+      master:
+        burpsrcext: "zip"
+        burp_version: "master"
+        burp_server_port_per_operation_bool: true

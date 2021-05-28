@@ -1,6 +1,8 @@
 
 [![Build Status](https://travis-ci.com/CoffeeITWorks/ansible_burp2_client.svg?branch=master)](https://travis-ci.com/CoffeeITWorks/ansible_burp2_client)
 
+[![Molecule](https://github.com/CoffeeITWorks/ansible_burp2_client/actions/workflows/molecule-test.yml/badge.svg)](https://github.com/CoffeeITWorks/ansible_burp2_client/actions/workflows/molecule-test.yml)
+
 Getting Started
 ================
 

@@ -1,7 +1,7 @@
 
-[![CircleCI](https://circleci.com/gh/CoffeeITWorks/ansible_burp2_client.svg?style=svg)](https://circleci.com/gh/CoffeeITWorks/ansible_burp2_client)
+[![Build Status](https://travis-ci.com/CoffeeITWorks/ansible_burp2_client.svg?branch=master)](https://travis-ci.com/CoffeeITWorks/ansible_burp2_client)
 
-[![Build Status](https://travis-ci.org/CoffeeITWorks/ansible_burp2_client.svg?branch=master)](https://travis-ci.org/CoffeeITWorks/ansible_burp2_client)
+[![Molecule](https://github.com/CoffeeITWorks/ansible_burp2_client/actions/workflows/molecule-test.yml/badge.svg)](https://github.com/CoffeeITWorks/ansible_burp2_client/actions/workflows/molecule-test.yml)
 
 Getting Started
 ================

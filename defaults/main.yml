@@ -40,7 +40,7 @@ burp_client_test_line: "burp -c {{ burp_client_dir }}/burp.conf -a l"
 ## Build vars:
 
 burp_force_reinstall: false
-burp_version: "2.2.18"
+burp_version: "2.4.0"
 burpsrcext: 'tar.gz'
 burpsrc: "burp-{{ burp_version }}"
 burp_configure_line: "CFLAGS='-O2 -march=native -mtune=native -mfpmath=sse -floop-parallelize-all -ftree-parallelize-loops=4' ./configure "
@@ -68,3 +68,7 @@ burp_client_server_can_override_includes: '1'
 
 # use ports instead of package to install sw on freebsd
 burp_freebsd_use_portinstall: true
+
+burp_client_custom_lines: []
+#  - "someextra=line"
+### ---

@@ -14,7 +14,7 @@
 
 - name: Include clean tasks
   include_tasks: clean.yml
-  when: burp_client_clean_installed | bool
+  when: burp_client_clean_installed
 
 - include_tasks: build-burp.yml
 

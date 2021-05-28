@@ -1,9 +1,6 @@
 ---
 - name: Converge
   hosts: all
-  pre_tasks:
-    - name: Populate service facts
-      ansible.builtin.service_facts:
   vars:
     #burp_module_test_client: false
     #burp_module_agent: false

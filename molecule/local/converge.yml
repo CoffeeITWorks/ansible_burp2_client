@@ -18,6 +18,8 @@
     burp_client_ssl_peer_cn: "{{ ansible_hostname }}"
     # Configure Burp Autoupgrade
     #burp_server_autoupgrade_enabled: false
-  roles:
+  tasks:
     #- role: coffeeitworks.burp2_server
-    - role: ansible_burp2_client
+    - name: Include ansible_burp2_client
+      include_role: 
+        name: ansible_burp2_client

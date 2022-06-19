@@ -1,3 +1,7 @@
+1.14.0
+======
+Fixes on molecule v4 tests and latest galaxy meta compatibility
+
 1.8.1
 =====
 * support centos 8

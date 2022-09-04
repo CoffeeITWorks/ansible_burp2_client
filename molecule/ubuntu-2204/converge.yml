@@ -1,0 +1,22 @@
+---
+- name: Converge
+  hosts: all
+  vars:
+    #burp_module_test_client: false
+    #burp_module_agent: false
+    burp_client_dir: "{{ etc_dir }}/burp_client2"
+    burp_client_server: 'localhost'
+    burp_client_cname: 'burp_client2'
+    burp_client_password: burp_client_password1
+    #burp2_add_manual_clients:
+    #  - name: "{{ burp_client_cname }}"
+    #    password: "{{ burp_client_password }}"
+    burp_client_test: false
+    burp_client_ssl_peer_cn: "{{ ansible_hostname }}"
+    # Configure Burp Autoupgrade
+    #burp_server_autoupgrade_enabled: false
+  tasks:
+    #- role: coffeeitworks.burp2_server
+    - name: Include ansible_burp2_client
+      include_role: 
+        name: ansible_burp2_client

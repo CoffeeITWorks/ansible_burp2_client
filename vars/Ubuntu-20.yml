@@ -18,15 +18,13 @@ build_dependencies:
   - unzip        # required to unzip from master.zip archive for example
   - openssl      # On debian 8 vagrant is not installed by default
   - libncurses5  # from package dependencies
-  - libncurses5-dev # from package dependencies
   - libgcc1      # from package dependencies
   - libc6        # from package dependencies
   - libacl1      # from package dependencies
-  - libssl3      # from package dependencies (Ubuntu22+)
+  - libssl1.1    # from package dependencies (debian9,debian10,Ubuntu18+)
   - libtinfo5    # from package dependencies
   - zlib1g       # from package dependencies
   - cron         # required to schedule jobs
-  - locales
 
 cron_service: cron
 

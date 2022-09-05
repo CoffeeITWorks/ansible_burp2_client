@@ -52,7 +52,6 @@ burp_client_port: "{{ burp_server_port | default(4971) }}"
 burp_client_status_port: "{{ burp_server_status_port | default(4972) }}"
 
 burp_client_pidfile: "/var/run/burp.pid"
-burp_client_protocol: "1"
 ```
 
 Port per operation
